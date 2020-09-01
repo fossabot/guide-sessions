@@ -41,9 +41,9 @@ public class CartApplication  extends SpringBootServletInitializer {
 		System.out.println("=============================================================");
 	}
 	@Bean
-	RestTemplate restTemplate()
+	CartResource restTemplate()
 	{
-		return new RestTemplate();
+		return new CartResource();
 	}
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application)
