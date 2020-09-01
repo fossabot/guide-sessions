@@ -45,6 +45,10 @@ public class CartApplication  extends SpringBootServletInitializer {
 	{
 		return new CartResource();
 	}
+	@Bean
+	SwaggerConfig getSwaggerConfig() {
+		return new SwaggerConfig();
+	}
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application)
 	{
