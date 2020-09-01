@@ -22,40 +22,54 @@ import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+//import javax.ws.rs.GET;
+//import javax.ws.rs.POST;
+//import javax.ws.rs.Path;
+//import javax.ws.rs.PathParam;
+//import javax.ws.rs.Produces;
+//import javax.ws.rs.core.Context;
+//import javax.ws.rs.core.MediaType;
+//import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Path("/")
+//@Path("/")
+@CrossOrigin
+@RestController
+@RequestMapping("/")
 public class CartResource {
 
-    @POST
+//    @POST
     // tag::endpointCartItemPrice[]
-    @Path("cart/{item}&{price}")
+//    @Path("cart/{item}&{price}")
+    @PostMapping(value = "cart/{item}&{price}" ,produces = org.springframework.http.MediaType.TEXT_PLAIN_VALUE) 
     // end::endpointCartItemPrice[]
-    @Produces(MediaType.TEXT_PLAIN)
+//    @Produces(MediaType.TEXT_PLAIN)
     @APIResponse(responseCode = "200", description = "Item successfully added to cart.")
     @Operation(summary = "Add a new item to cart.")
     // tag::addToCart[]
-    public String addToCart(@Context HttpServletRequest request,
+    public String addToCart(
+//    		@Context 
+    		HttpServletRequest request,
                     @Parameter(description = "Item you need for intergalatic travel.",
                                required = true)
                     // tag::item[]
-                    @PathParam("item") String item,
+//                    @PathParam
+                    @PathVariable("item") String item,
                     // end::item[]
                     @Parameter(description = "Price for this item.",
                                required = true)
                     // tag::price[]
-                    @PathParam("price") double price) {
+//                    @PathParam
+    				@PathVariable("price") double price) {
                     // end::price[]
         // tag::getSession[]
         HttpSession session = request.getSession();
@@ -67,17 +81,20 @@ public class CartResource {
     }
     // end::addToCart[]
 
-    @GET
+//    @GET
     // tag::endpointCart[]
-    @Path("cart")
+//    @Path("cart")
+    @GetMapping(value = "cart" ,produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE) 
     // end::endpointCart[]
-    @Produces(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
     @APIResponse(responseCode = "200",
         description = "Items successfully retrieved from your cart.")
     @Operation(summary = "Return an JsonObject instance which contains " +
                          "the items in your cart and the subtotal.")
     // tag::getCart[]
-    public JsonObject getCart(@Context HttpServletRequest request) {
+    public JsonObject getCart(
+//    		@Context 
+    		HttpServletRequest request) {
         HttpSession session = request.getSession();
         Enumeration<String> names = session.getAttributeNames();
         JsonObjectBuilder builder = Json.createObjectBuilder();

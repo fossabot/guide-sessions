@@ -12,10 +12,43 @@
 // end::copyright[]
 package io.openliberty.guides.cart;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+ 
 
-@ApplicationPath("/")
-public class CartApplication extends Application {
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer; 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
+ 
+@SpringBootApplication(scanBasePackages = { "com.tcb.webatm.base.app", "com.tcb.webatm.base.app.restapi",
+		"com.tcb.webatm.base.app.redis", "com.tcb.webatm.base.app.session", "com.tcb.webatm.eatm",
+		"com.tcb.webatm.eatm.*" ,"com.tcb.webatm.base.data" })
+public class CartApplication  extends SpringBootServletInitializer {
+	public static void main(String[] args)
+	{
+		System.out.println("=============================================================");
+		System.out.println("=============================================================");
+		ApplicationContext applicationContext = SpringApplication.run(CartApplication.class, args);
+
+		for (String string : applicationContext.getBeanDefinitionNames())
+		{
+			System.out.println(string);
+		}
+
+		System.out.println("=============================================================");
+		System.out.println("=============================================================");
+	}
+	@Bean
+	RestTemplate restTemplate()
+	{
+		return new RestTemplate();
+	}
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application)
+	{
+		return application.sources(CartApplication.class);
+	}
 
 }
