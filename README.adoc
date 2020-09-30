@@ -1,3 +1,5 @@
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frobert0714%2Fguide-sessions.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frobert0714%2Fguide-sessions?ref=badge_shield)
+
 // Copyright (c) 2019, 2020 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
@@ -421,3 +423,7 @@ and deployed in a Kubernetes cluster.
 
 
 include::{common-includes}/attribution.adoc[subs="attributes"]
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frobert0714%2Fguide-sessions.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Frobert0714%2Fguide-sessions?ref=badge_large)
